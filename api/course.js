@@ -26,7 +26,4 @@ router.put('/:courseId/image', imageUpload.single('image'), updateCourseImage);
 router.delete('/:courseId', deleteCourse);
 
 
-
-
-
 module.exports = router;

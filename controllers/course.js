@@ -3,7 +3,6 @@ const fs = require('fs');
 
 // create a new course
 exports.createCourse = async (req, res, next) => {
-
     try {
         const course = await CourseModel.create({
             title: req.body.title,
