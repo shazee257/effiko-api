@@ -1,15 +1,16 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const categorySchema = new Schema(
+const subscriptionSchema = new Schema(
     {
-        name: { type: String, required: true, unique: true },
+        user_name: { type: String },
+        email: { type: String, unique: true, required: true },
         is_deleted: { type: Boolean, default: false }
     },
     { timestamps: true }
 );
 
-categorySchema.set('toJSON', {
+subscriptionSchema.set('toJSON', {
     transform: function (doc, ret, opt) {
         delete ret['__v']
         delete ret['updatedAt']
@@ -17,4 +18,4 @@ categorySchema.set('toJSON', {
     }
 })
 
-module.exports = mongoose.model('category', categorySchema);
+module.exports = mongoose.model('subscription', subscriptionSchema);

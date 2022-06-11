@@ -1,17 +1,15 @@
 const apiRouter = require('express').Router();
 
-const userApi = require('./user');
-const sellerApi = require('./seller');
+const courseApi = require('./course');
+const articleApi = require('./article');
 const categoryApi = require('./category');
-const brandApi = require('./brand');
-// const productApi = require('./product');
+const subscriptionApi = require('./subscription');
 
 
-apiRouter.use('/users', userApi);
-apiRouter.use('/sellers', sellerApi);
+apiRouter.use('/courses', courseApi);
+apiRouter.use('/articles', articleApi);
 apiRouter.use('/categories', categoryApi);
-apiRouter.use('/brands', brandApi);
-// apiRouter.use(productApi);
+apiRouter.use('/subscriptions', subscriptionApi);
 
 
 module.exports = apiRouter;

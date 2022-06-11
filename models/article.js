@@ -1,24 +1,22 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const brandSchema = new Schema(
+const articleSchema = new Schema(
     {
-        name: { type: String, unique: true, required: true },
-        description: String,
-        image: String,
+        title: { type: String, required: true, unique: true },
+        body: { type: String },
+        category_id: { type: Schema.Types.ObjectId, ref: 'category' },
         is_deleted: { type: Boolean, default: false }
     },
     { timestamps: true }
 );
 
-brandSchema.set('toJSON', {
+articleSchema.set('toJSON', {
     transform: function (doc, ret, opt) {
         delete ret['__v']
         delete ret['updatedAt']
-        delete ret['createdAt']
         return ret
     }
 })
 
-module.exports = mongoose.model('brand', brandSchema);
-
+module.exports = mongoose.model('article', articleSchema);

@@ -3,9 +3,6 @@ const dotenv = require('dotenv');
 const morgan = require('morgan');
 const connectDB = require('./config/db');
 const cors = require("cors");
-const swaggerUI = require('swagger-ui-express');
-const yaml = require('js-yaml');
-const fs = require('fs');
 const asyncHandler = require('express-async-handler');
 const api = require('./api');
 const bodyParser = require("body-parser");
@@ -28,7 +25,7 @@ app.use(cors());
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-app.use('/assets', express.static('src/assets'));
+// app.use('/assets', express.static('src/assets'));
 app.use('/uploads', express.static('src/assets/uploads'));
 
 // Port assign
@@ -59,13 +56,6 @@ app.use("/api",
 
 app.use('/uploads', express.static('src/uploads'));
 
-// Swagger Setup
-const swaggerDocument = yaml.load(fs.readFileSync('./api/swagger.yaml', 'utf8'));
-app.use("/api/docs", swaggerUI.serve, swaggerUI.setup(swaggerDocument));
-app.get('/api/swagger.json', (req, res) => {
-    res.setHeader('Content-Type', 'application/json');
-    res.send(swaggerDocument);
-});
 
 
 app.listen(port, () =>

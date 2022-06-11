@@ -1,15 +1,17 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const categorySchema = new Schema(
+const courseSchema = new Schema(
     {
-        name: { type: String, required: true, unique: true },
+        title: { type: String, required: true, unique: true },
+        image: { type: String },
+        description: { type: String },
         is_deleted: { type: Boolean, default: false }
     },
     { timestamps: true }
 );
 
-categorySchema.set('toJSON', {
+courseSchema.set('toJSON', {
     transform: function (doc, ret, opt) {
         delete ret['__v']
         delete ret['updatedAt']
@@ -17,4 +19,4 @@ categorySchema.set('toJSON', {
     }
 })
 
-module.exports = mongoose.model('category', categorySchema);
+module.exports = mongoose.model('course', courseSchema);
