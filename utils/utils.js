@@ -60,6 +60,24 @@ exports.imageUpload = multer({
   fileFilter: this.imageFilter,
 })
 
+// only filter pdf files 
+exports.cvFilter = function (req, file, cb) {
+  if (!file.originalname.match(/\.(pdf|PDF)$/)) {
+    req.fileValidationError = 'Only pdf files are allowed!';
+    return cb(null, false);
+  }
+  cb(null, true);
+}
+
+// cv upload
+exports.cvUpload = multer({
+  storage: storage,
+  limits: {
+    fileSize: 50000000 // 10000000 Bytes = 50 MB
+  },
+  fileFilter: this.cvFilter,
+})
+
 // verify token based on request user_id with params id
 exports.verifyIdWithToken = (paramsId, requestId) => {
   if (paramsId != requestId.toString()) {
