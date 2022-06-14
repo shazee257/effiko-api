@@ -4,9 +4,7 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "start": "nodemon server.js",
-    "dev": "node server.js",
-    "build": "npm run clean && npm run build:prod"
+    "start": "nodemon server.js"
   },
   "keywords": [],
   "author": "",
