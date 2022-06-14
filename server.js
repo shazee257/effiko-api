@@ -56,9 +56,10 @@ app.use("/api",
 
 app.use('/uploads', express.static('src/uploads'));
 
+app.get('/', (req, res) => res.status(200).json({ message: 'Welcome to the effiko-API' }));
 
 
 app.listen(port, () =>
-    console.log(`API running on http://localhost:${port} on ${env} mode`)
+    console.log(`effiko-API is running on ${port}`)
 );
 
