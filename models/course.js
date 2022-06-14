@@ -19,4 +19,12 @@ courseSchema.set('toJSON', {
     }
 })
 
+courseSchema.virtual('id').get(function () {
+    return this._id;
+});
+
+courseSchema.set('toJSON', {
+    virtuals: true
+});
+
 module.exports = mongoose.model('course', courseSchema);

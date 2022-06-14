@@ -11,11 +11,7 @@ const bodyParser = require("body-parser");
 dotenv.config({ path: './config/config.env' });
 
 // connect DB
-connectDB(
-    process.env.DATABASE_USER,
-    process.env.DATABASE_PASSWORD,
-    process.env.DATABASE_NAME
-);
+connectDB();
 
 // app init
 const app = express();
@@ -59,7 +55,7 @@ app.use('/uploads', express.static('src/uploads'));
 app.get('/', (req, res) => res.status(200).json({ message: 'Welcome to the effiko-API' }));
 
 
-app.listen(port, () =>
+app.listen(5000, () =>
     console.log(`effiko-API is running on ${port}`)
 );
 
