@@ -56,7 +56,7 @@ app.use("/api",
 
 app.use('/uploads', express.static('src/uploads'));
 
-app.get('/', (req, res) => res.status(200).send('Welcome to the API'));
+app.get('/', (req, res) => res.status(200).send('Welcome to the effiko API'));
 
 
 app.listen(port, () =>
