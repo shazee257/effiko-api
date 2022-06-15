@@ -10,8 +10,8 @@ const options = {
     useUnifiedTopology: true,
 };
 
-const connectDB = async () => {
-    const conn = await mongoose.connect(`mongodb+srv://test:test@cluster0-n25kv.mongodb.net/effiko?retryWrites=true&w=majority`, options);
+const connectDB = async (user, pass, db) => {
+    const conn = await mongoose.connect(`mongodb+srv://${user}:${pass}@cluster0-n25kv.mongodb.net/${db}?retryWrites=true&w=majority`, options);
     console.log(`MongoDB Connected: ${conn.connection.db.databaseName}`);
 }
 

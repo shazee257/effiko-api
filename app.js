@@ -11,7 +11,11 @@ const bodyParser = require("body-parser");
 dotenv.config({ path: './config/config.env' });
 
 // connect DB
-connectDB();
+connectDB(
+    process.env.DB_USER,
+    process.env.DB_PASS,
+    process.env.DB_NAME
+);
 
 // app init
 const app = express();
