@@ -18,4 +18,12 @@ subscriptionSchema.set('toJSON', {
     }
 })
 
+subscriptionSchema.virtual('id').get(function () {
+    return this._id;
+});
+
+subscriptionSchema.set('toJSON', {
+    virtuals: true
+});
+
 module.exports = mongoose.model('subscription', subscriptionSchema);

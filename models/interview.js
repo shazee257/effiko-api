@@ -19,4 +19,13 @@ interviewSchema.set('toJSON', {
     }
 })
 
+interviewSchema.virtual('id').get(function () {
+    return this._id;
+});
+
+interviewSchema.set('toJSON', {
+    virtuals: true
+});
+
+
 module.exports = mongoose.model('interview', interviewSchema);

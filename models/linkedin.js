@@ -19,4 +19,12 @@ linkedinSchema.set('toJSON', {
     }
 })
 
+linkedinSchema.virtual('id').get(function () {
+    return this._id;
+});
+
+linkedinSchema.set('toJSON', {
+    virtuals: true
+});
+
 module.exports = mongoose.model('linkedin', linkedinSchema);

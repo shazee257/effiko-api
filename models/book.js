@@ -20,4 +20,12 @@ bookSchema.set('toJSON', {
     }
 })
 
+bookSchema.virtual('id').get(function () {
+    return this._id;
+});
+
+bookSchema.set('toJSON', {
+    virtuals: true
+});
+
 module.exports = mongoose.model('book', bookSchema);

@@ -19,4 +19,14 @@ messageSchema.set('toJSON', {
     }
 })
 
+messageSchema.virtual('id').get(function () {
+    return this._id;
+});
+
+
+messageSchema.set('toJSON', {
+    virtuals: true
+});
+
+
 module.exports = mongoose.model('message', messageSchema);

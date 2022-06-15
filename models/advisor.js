@@ -21,4 +21,12 @@ advisorSchema.set('toJSON', {
     }
 })
 
+advisorSchema.virtual('id').get(function () {
+    return this._id;
+});
+
+advisorSchema.set('toJSON', {
+    virtuals: true
+});
+
 module.exports = mongoose.model('advisor', advisorSchema);

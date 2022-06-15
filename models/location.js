@@ -17,4 +17,12 @@ locationSchema.set('toJSON', {
     }
 })
 
+locationSchema.virtual('id').get(function () {
+    return this._id;
+});
+
+locationSchema.set('toJSON', {
+    virtuals: true
+});
+
 module.exports = mongoose.model('location', locationSchema);

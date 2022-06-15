@@ -19,4 +19,12 @@ articleSchema.set('toJSON', {
     }
 })
 
+articleSchema.virtual('id').get(function () {
+    return this._id;
+});
+
+articleSchema.set('toJSON', {
+    virtuals: true
+});
+
 module.exports = mongoose.model('article', articleSchema);
