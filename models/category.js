@@ -4,6 +4,7 @@ const Schema = mongoose.Schema;
 const categorySchema = new Schema(
     {
         name: { type: String, required: true, unique: true },
+        description: String,
         is_deleted: { type: Boolean, default: false }
     },
     { timestamps: true }
