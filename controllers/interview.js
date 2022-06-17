@@ -3,11 +3,34 @@ const InterviewModel = require('../models/interview');
 // Create a interview
 exports.createInterview = async (req, res, next) => {
     try {
-        const newInterview = await InterviewModel.create(req.body);
+        const interview = await InterviewModel.create(req.body);
         res.status(200).json({
             success: true,
             message: "Interview created successfully",
-            newInterview
+            interview
+        });
+    }
+    catch (error) {
+        next(error);
+    }
+}
+
+// Get a interview
+exports.getInterview = async (req, res, next) => {
+    try {
+        const interview = await InterviewModel.findOne({ _id: req.params.interviewId, is_deleted: false });
+
+        if (!interview) {
+            return res.status(404).json({
+                success: false,
+                message: "Interview not found"
+            });
+        }
+
+        res.status(200).json({
+            success: true,
+            message: "Interview found successfully",
+            interview
         });
     }
     catch (error) {
