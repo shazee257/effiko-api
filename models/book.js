@@ -6,7 +6,7 @@ const bookSchema = new Schema(
         title: { type: String, required: true },
         author: String,
         image: String,
-        book: String,
+        pdf: String,
         is_deleted: { type: Boolean, default: false }
     },
     { timestamps: true }
