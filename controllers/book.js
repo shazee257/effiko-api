@@ -11,6 +11,7 @@ exports.createBook = async (req, res, next) => {
 
         res.status(200).json({
             success: true,
+            message: 'New Book added, please upload a pdf file',
             book
         });
     } catch (error) {

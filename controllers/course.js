@@ -83,12 +83,12 @@ exports.updateCourseImage = async (req, res, next) => {
     try {
         const course = await CourseModel.findOne({ _id: req.params.courseId, is_deleted: false });
 
-        if (course.image) {
-            fs.unlink("src/assets/uploads/" + course.image, (err) => {
-                if (err) throw err;
-                console.log('successfully deleted');
-            });
-        }
+        // if (course.image) {
+        //     fs.unlink("src/assets/uploads/" + course.image, (err) => {
+        //         if (err) throw err;
+        //         console.log('successfully deleted');
+        //     });
+        // }
 
         await CourseModel.findByIdAndUpdate(req.params.courseId,
             { image: req.file.filename }, { new: true }
