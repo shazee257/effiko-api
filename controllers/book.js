@@ -32,7 +32,7 @@ exports.uploadPdf = async (req, res, next) => {
             });
         }
 
-        book.book = req.file.filename;
+        book.pdf = req.file.filename;
         await book.save();
         res.status(200).json({
             success: true,
@@ -93,7 +93,8 @@ exports.deleteBook = async (req, res, next) => {
 
         res.status(200).json({
             success: true,
-            message: 'Book deleted'
+            message: 'Book deleted',
+            book
         });
     }
     catch (error) {

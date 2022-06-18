@@ -11,7 +11,7 @@ router.post('/',
     imageUpload.single('image'), createBook);
 
 // Upload a pdf book
-router.post('/:bookId/upload', cvUpload.single('book'), uploadPdf);
+router.post('/:bookId/upload', cvUpload.single('pdf'), uploadPdf);
 
 // Get a book
 router.get('/:bookId', getBook);
