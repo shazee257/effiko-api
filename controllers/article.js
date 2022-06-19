@@ -6,6 +6,7 @@ exports.createArticle = async (req, res, next) => {
         const article = await ArticleModel.create(req.body);
         res.status(200).json({
             success: true,
+            message: 'Article created successfully',
             article
         });
     }
@@ -17,7 +18,7 @@ exports.createArticle = async (req, res, next) => {
 // Get All Articles
 exports.getAllArticles = async (req, res, next) => {
     try {
-        const articles = await ArticleModel.find({ is_deleted: false });
+        const articles = await ArticleModel.find({ is_deleted: false }).populate('category_id', 'name');
         res.status(200).json({
             success: true,
             articles
@@ -31,13 +32,17 @@ exports.getAllArticles = async (req, res, next) => {
 // Get Article By Id
 exports.getArticleById = async (req, res, next) => {
     try {
-        const article = await ArticleModel.findById(req.params.articleId);
+        const article = await ArticleModel.findById(req.params.articleId).populate('category_id', 'name');
         res.status(200).json({
             success: true,
             article
         });
     }
     catch (error) {
+        res.status(404).json({
+            success: false,
+            message: error
+        });
         next(error);
     }
 }
@@ -50,6 +55,7 @@ exports.updateArticle = async (req, res, next) => {
         );
         res.status(200).json({
             success: true,
+            message: 'Article updated successfully',
             article
         });
     }

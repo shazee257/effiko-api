@@ -3,7 +3,7 @@ const { imageUpload, cvUpload } = require('../utils/utils');
 const {
     createBook, uploadPdf,
     getBook, getBooks,
-    deleteBook
+    deleteBook, updateImage, updateBook
 } = require('../controllers/book');
 
 // Create a book
@@ -22,5 +22,10 @@ router.get('/', getBooks);
 // Delete a book
 router.delete('/:bookId', deleteBook);
 
+// update book
+router.put('/:bookId', updateBook);
+
+// update image
+router.put('/:bookId/image', imageUpload.single('image'), updateImage);
 
 module.exports = router;

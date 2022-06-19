@@ -45,6 +45,32 @@ exports.uploadPdf = async (req, res, next) => {
     }
 }
 
+// update image
+exports.updateImage = async (req, res, next) => {
+    try {
+        const book = await BookModel.findOne(
+            { _id: req.params.bookId, is_deleted: false }
+        );
+
+        if (!book) {
+            return res.status(404).json({
+                success: false,
+                message: 'Book not found'
+            });
+        }
+
+        book.image = req.file.filename;
+        await book.save();
+        res.status(200).json({
+            success: true,
+            message: 'Book image updated'
+        });
+    }
+    catch (error) {
+        next(error);
+    }
+}
+
 // Get a book
 exports.getBook = async (req, res, next) => {
     try {
@@ -103,4 +129,30 @@ exports.deleteBook = async (req, res, next) => {
     }
 }
 
+// update book
+exports.updateBook = async (req, res, next) => {
+    try {
+        const book = await BookModel.findOne(
+            { _id: req.params.bookId, is_deleted: false }
+        );
 
+        if (!book) {
+            return res.status(404).json({
+                success: false,
+                message: 'Book not found'
+            });
+        }
+
+        book.title = req.body.title;
+        book.author = req.body.author;
+        await book.save();
+        res.status(200).json({
+            success: true,
+            message: 'Book updated',
+            book
+        });
+    }
+    catch (error) {
+        next(error);
+    }
+}
