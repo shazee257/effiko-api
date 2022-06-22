@@ -21,7 +21,8 @@ exports.createLinkedin = async (req, res, next) => {
 // get all linkedin data
 exports.getAllLinkedin = async (req, res, next) => {
     try {
-        const linkedin = await LinkedinModel.find({});
+        const linkedin = await LinkedinModel.find({})
+            .sort({ createdAt: -1 });
 
         res.status(200).json({
             success: true,
@@ -50,3 +51,4 @@ exports.deleteLinkedin = async (req, res, next) => {
         next(error);
     }
 }
+

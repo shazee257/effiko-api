@@ -18,7 +18,8 @@ exports.createArticle = async (req, res, next) => {
 // Get All Articles
 exports.getAllArticles = async (req, res, next) => {
     try {
-        const articles = await ArticleModel.find({ is_deleted: false }).populate('category_id', 'name');
+        const articles = await ArticleModel.find({ is_deleted: false })
+            .populate('category_id', 'name').sort({ createdAt: -1 });
         res.status(200).json({
             success: true,
             articles
@@ -78,4 +79,30 @@ exports.deleteArticle = async (req, res, next) => {
     catch (error) {
         next(error);
     }
+}
+
+// Find articles by Category
+exports.findArticlesByCategory = async (req, res, next) => {
+    console.log('req params category id: ', typeof req.params.categoryId);
+
+    const filterArticles = [];
+
+    try {
+        const articles = await ArticleModel.find({ is_deleted: false })
+            .populate('category_id', 'name').sort({ createdAt: -1 });
+
+        for (let i = 0; i < articles.length; i++) {
+            if (articles[i].category_id._id.toString() == req.params.categoryId) {
+                filterArticles.push(articles[i]);
+            }
+        }
+        res.status(200).json({
+            success: true,
+            filterArticles
+        });
+    } catch (error) {
+        next(error);
+    }
+
+
 }

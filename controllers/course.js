@@ -35,7 +35,8 @@ exports.getCourseById = async (req, res, next) => {
 // Get all courses
 exports.getAllCourses = async (req, res, next) => {
     try {
-        const courses = await CourseModel.find({ is_deleted: false });
+        const courses = await CourseModel.find({ is_deleted: false })
+            .sort({ createdAt: -1 });
         res.status(200).json({
             success: true,
             courses

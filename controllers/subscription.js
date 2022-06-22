@@ -17,7 +17,8 @@ exports.createSubscription = async (req, res, next) => {
 // Get all subscriptions
 exports.getAllSubscriptions = async (req, res, next) => {
     try {
-        const subscriptions = await SubscriptionModel.find({ is_deleted: false });
+        const subscriptions = await SubscriptionModel.find({ is_deleted: false })
+            .sort({ createdAt: -1 });
         res.status(200).json({
             success: true,
             subscriptions

@@ -98,7 +98,8 @@ exports.getBook = async (req, res, next) => {
 // Get all books
 exports.getBooks = async (req, res, next) => {
     try {
-        const books = await BookModel.find({ is_deleted: false });
+        const books = await BookModel.find({ is_deleted: false })
+            .sort({ createdAt: -1 });
 
         res.status(200).json({
             success: true,

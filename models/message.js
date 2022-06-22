@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 const messageSchema = new Schema(
     {
-        user_name: { String },
+        user_name: String,
         email: { type: String, required: true, unique: true },
         body: { type: String, required: true },
         is_deleted: { type: Boolean, default: false }

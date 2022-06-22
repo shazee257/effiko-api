@@ -24,7 +24,8 @@ exports.createAdvisor = async (req, res, next) => {
 // Get all advisors
 exports.getAllAdvisors = async (req, res, next) => {
     try {
-        const advisors = await AdvisorModel.find({ is_deleted: false });
+        const advisors = await AdvisorModel.find({ is_deleted: false })
+            .sort({ createdAt: -1 });
         res.status(200).json({
             success: true,
             advisors

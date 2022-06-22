@@ -18,7 +18,8 @@ exports.createInterview = async (req, res, next) => {
 // Get a interview
 exports.getInterview = async (req, res, next) => {
     try {
-        const interview = await InterviewModel.findOne({ _id: req.params.interviewId, is_deleted: false });
+        const interview = await InterviewModel
+            .findOne({ _id: req.params.interviewId, is_deleted: false });
 
         if (!interview) {
             return res.status(404).json({
@@ -41,7 +42,8 @@ exports.getInterview = async (req, res, next) => {
 // Get all interviews
 exports.getAllInterviews = async (req, res, next) => {
     try {
-        const interviews = await InterviewModel.find({ is_deleted: false });
+        const interviews = await InterviewModel.find({ is_deleted: false })
+            .sort({ createdAt: -1 });
         res.status(200).json({
             success: true,
             message: "All interviews fetched successfully",
