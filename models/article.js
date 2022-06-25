@@ -5,6 +5,7 @@ const articleSchema = new Schema(
     {
         title: { type: String, required: true, unique: true },
         body: { type: String },
+        image: String,
         category_id: { type: Schema.Types.ObjectId, ref: 'category' },
         is_deleted: { type: Boolean, default: false }
     },

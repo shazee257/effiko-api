@@ -3,7 +3,15 @@ const ArticleModel = require('../models/article');
 // Create a new article
 exports.createArticle = async (req, res, next) => {
     try {
-        const article = await ArticleModel.create(req.body);
+        // const article = await ArticleModel.create(req.body);
+        const article = await ArticleModel.create({
+            title: req.body.title,
+            image: req.file.filename,
+            body: req.body.body,
+            category_id: req.body.category_id
+        });
+
+
         res.status(200).json({
             success: true,
             message: 'Article created successfully',
@@ -64,6 +72,33 @@ exports.updateArticle = async (req, res, next) => {
         next(error);
     }
 }
+
+// update image
+exports.updateImage = async (req, res, next) => {
+    try {
+        // const article = await ArticleModel.findOne({ _id: req.params.articleId, is_deleted: false });
+
+        // if (!article) {
+        //     return res.status(404).json({
+        //         success: false,
+        //         message: 'Article not found'
+        //     });
+        // }
+        const article = await ArticleModel.findByIdAndUpdate(req.params.articleId,
+            { image: req.file.filename }, { new: true }
+        );
+
+        res.status(200).json({
+            success: true,
+            message: 'Image updated successfully',
+            article
+        });
+    }
+    catch (error) {
+        next(error);
+    }
+}
+
 
 // Delete Article
 exports.deleteArticle = async (req, res, next) => {
